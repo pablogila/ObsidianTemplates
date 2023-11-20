@@ -3,9 +3,10 @@ week = "Week " + tp.date.weekday("YYYY-MM-DD", 1);
 minutes = tp.date.now("mm");
 rounded_minutes = Math.round((minutes / 15)) * 15;
 final_minutes = rounded_minutes.toString().padStart(2, '0');
-hour = tp.date.now("HH")
+hour = parseInt(tp.date.now("HH"));
 if (final_minutes == 60){
-	hour = 0
+	hour += 1;
+	final_minutes = "00";
 }
 final_hour = hour.toString().padStart(2, '0');
 date = tp.date.now("YY-MM-DD-") + final_hour + "." + final_minutes;
