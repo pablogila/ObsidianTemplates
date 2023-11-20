@@ -12,7 +12,7 @@ final_hour = hour.toString().padStart(2, '0');
 date = tp.date.now("YY-MM-DD-") + final_hour + "." + final_minutes;
 title = tp.file.title;
 if (title.startsWith("Untitled")){
-	title = "Meeting " + date;
+	title = "Meet " + date;
     await tp.file.rename(`${title}`);
 }
 tR += `# ${title}\n`;
