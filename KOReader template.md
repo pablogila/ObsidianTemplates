@@ -1,12 +1,22 @@
 <%*
-// This template parses JSON files with KOReader highlights
-// into Obsidian markdown notes, using the templater plugin.
-// The header level is obtained from the highlight color,
-// from higher to lower: 'red', 'orange', 'yellow', 'green'.
+// This template imports JSON files with your KOReader highlights
+// into Obsidian markdown notes, using the Obsidian Templater plugin.
+// The format of the notes can be modified by changing the highlight color:
+// From higher to lower, the header level is specified
+// with the colors 'red', 'orange', 'yellow', 'green'.
 // Bold text is achieved with 'purple' color.
-// Item lists for every \n are achieved with 'blue' color.
+// Item lists for every new line are achieved with 'blue' color.
+//
+// Function to convert UNIX dates to yyyy-mm-dd
+function unixToDate(timestamp) {
+  date_js = new Date(timestamp * 1000);  // JS dates use milliseconds
+  date_year = date_js.getFullYear();
+  date_month = String(date_js.getMonth() + 1).padStart(2, '0');
+  date_day = String(date_js.getDate()).padStart(2, '0');
+  return `${date_year}-${date_month}-${date_day}`;
+  }
+// Prompt and parse JSON file path
 input_path = await tp.system.prompt("Path to the KOReader JSON file:", null, true);
-// Parse the JSON file
 fs = require("fs");
 content = fs.readFileSync(input_path, "utf-8");
 data = JSON.parse(content);
@@ -15,18 +25,32 @@ file = app.workspace.getActiveFile();
 name = `${data.title} - ${data.author} - ebook`;
 new_path = `${file.parent.path}/${name}.md`;
 await app.fileManager.renameFile(file, new_path);
+// Get modified timestamp
+timestamp_modified = data.created_on;  // UNIX time
+date = unixToDate(timestamp_modified);
+// Get first and last timestamps
+all_timestamps = data.entries.map(entry => entry.time);  // UNIX time
+timestamp_min = Math.min(...all_timestamps);
+timestamp_max = Math.max(...all_timestamps);
+date_min = unixToDate(timestamp_min)
+date_max = unixToDate(timestamp_max)
 // Book metadata
 output = `---\n`
-output += ``
-output += `---\n`
-// Generate markdown
-output += `# ${data.title}\n> ${data.author}\n\n`;
+output += `title: ${data.title}\n`
+output += `author: ${data.author}\n`
+output += `first: ${date_min}\n`
+output += `last: ${date_max}\n`
+output += `modified: ${date}\n`
+output += `tags: ebook\n`
+output += `---\n\n`
+// Book highlights
+output += `# ${data.title}\n**${data.author}**\n\n`;
 for (entry of data.entries) {
   if (entry.text) {
-    // Clean the text
+    // Avoid accidental wikilinks
     text = entry.text
     .replace(/\[/g, "\\[");
-    // Handle headers
+    // Custom format from the highlight color
     header = {
       red: "## ",
       orange: "### ",
@@ -42,7 +66,8 @@ for (entry of data.entries) {
     } else {  // Regular text
       output += `${text}\n`; 
     }
-    if (entry.note) {  // Optional note
+    // Optional note
+    if (entry.note) {
       output += `> ${entry.note.replace(/\n/g, "\n> ")}\n`;
     }
     output += `\n`
