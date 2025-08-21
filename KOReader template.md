@@ -42,7 +42,7 @@ output += `first: ${date_min}\n`
 output += `last: ${date_max}\n`
 output += `modified: ${date}\n`
 output += `tags: ebook\n`
-output += `---\n\n`
+output += `---\n`
 // Book highlights
 output += `# ${data.title}\n**${data.author}**\n\n`;
 for (entry of data.entries) {
