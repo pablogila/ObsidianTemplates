@@ -1,6 +1,11 @@
 <%*
 // This template imports JSON files with your KOReader highlights
 // into Obsidian markdown notes, using the Obsidian Templater plugin.
+//
+// Just create an empty note and apply this template.
+// It will ask for the JSON path in your computer.
+// Be careful, it will overwrite the current note!
+//
 // The format of the notes can be modified by changing the highlight color:
 // From higher to lower, the header level is specified
 // with the colors 'red', 'orange', 'yellow', 'green'.
@@ -40,7 +45,7 @@ output += `title: ${data.title}\n`
 output += `author: ${data.author}\n`
 output += `first: ${date_min}\n`
 output += `last: ${date_max}\n`
-output += `modified: ${date}\n`
+// output += `modified: ${date}\n`
 output += `tags: ebook\n`
 output += `---\n`
 // Book highlights
