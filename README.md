@@ -5,7 +5,7 @@ The simpler ones only require [Obsidian Templates](https://help.obsidian.md/Plug
 
 **Work agenda**. These templates should be applied by default in custom folders.  
 - `Weekly template`. Title format: `Week 2025-05-15`. It provides automatic links to the previous and following weeks, as well as to Google Calendar.  
-- `Meeting Template`. Title format: `Meet 25-05-15-15.30`, rounding every 15 minutes. It provides an automatic link to the current week note.  
+- `Meeting Template`. Title format: `Meet 250515T1530`, rounding every 15 minutes. It provides an automatic link to the current week note.  
 
 **Book highlights**  
 - `KOReader template`. Parse JSON highlights from KOReader into Obsidian notes.  
