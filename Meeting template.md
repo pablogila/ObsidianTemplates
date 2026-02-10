@@ -9,11 +9,11 @@ if (final_minutes == 60){
 	final_minutes = "00";
 }
 final_hour = hour.toString().padStart(2, '0');
-date = tp.date.now("YY-MM-DD-") + final_hour + "." + final_minutes;
+date = tp.date.now("YYMMDD") + "T" + final_hour + final_minutes;
 title = tp.file.title;
 year = tp.date.weekday("YYYY", 1);
 file = "Meet " + date;
-folder = "Work ⚛️/Meetings/Meetings " + year + "/" + file;
+folder = "Meetings/Meetings " + year + "/" + file;
 if (title.startsWith("Untitled")){
 	title = file;
     await tp.file.rename(`${title}`);
