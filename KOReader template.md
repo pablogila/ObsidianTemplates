@@ -1,17 +1,21 @@
 <%*
-// This template imports JSON files with your KOReader highlights
-// into Obsidian markdown notes, using the Obsidian Templater plugin.
-//
-// Just create an empty note and apply this template.
-// It will ask for the JSON path in your computer.
-// Be careful, it will overwrite the current note!
-//
-// The format of the notes can be modified by changing the highlight color:
-// From higher to lower, the header level is specified
-// with the colors 'red', 'orange', 'yellow', 'green'.
-// Bold text is achieved with 'purple' color.
-// Item lists for every new line are achieved with 'blue' color.
-//
+/*
+This template imports JSON files with your KOReader highlights into Obsidian markdown notes, using the Obsidian *Templater* plugin.
+Just create an empty note and apply this template.
+It will prompt you for the JSON path in your computer.
+Be careful, it will overwrite the current note!
+The format of the notes can be modified by changing the highlight color.
+From higher to lower, the header level is specified with the colors:
+- 'red'    -> H2 (## X)
+- 'orange' -> H3 (### X)
+- 'yellow' -> H4 (#### X)
+- 'green'  -> H5 (##### X)
+Note that the main header H1 is always the book's title.
+Additional formatting options:
+- 'purple' -> bold text (**X**)
+- 'blue'   -> list of items for every new line (- X\n- Y\n- Z)
+Comments are parsed as blockquotes (> X)
+*/
 // Function to convert UNIX dates to yyyy-mm-dd
 function unixToDate(timestamp) {
   date_js = new Date(timestamp * 1000);  // JS dates use milliseconds

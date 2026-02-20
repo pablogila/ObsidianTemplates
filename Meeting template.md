@@ -1,5 +1,5 @@
 <%*
-week = "Week " + tp.date.weekday("YYYY-MM-DD", 1);
+week = "Week " + tp.date.weekday("YYMMDD", 1);
 minutes = tp.date.now("mm");
 rounded_minutes = Math.round((minutes / 15)) * 15;
 final_minutes = rounded_minutes.toString().padStart(2, '0');

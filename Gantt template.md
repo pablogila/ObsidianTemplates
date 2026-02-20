@@ -1,13 +1,11 @@
 ```mermaid
 gantt
-title TITLE
-dateFormat YYYY-MM-DD
 
-section FIRST
-	task1 : crit, 2100-01-01, 2d
-	task2 : 1d
+section X
+task 1 : 2025-12-12, 1d
+task 2 : active, 2025-12-13, 2d
 
-section SECOND
-	task3 : done, X, 2100-01-01, 1d
-	task3 : active, after X, 1d
+section Y
+task 3 : done, 2025-12-12, 2d
+task 4 : crit, 1d
 ```
